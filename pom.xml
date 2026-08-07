@@ -28,19 +28,45 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudhub2Deployment>
-						<uri>https://anypoint.mulesoft.com</uri>
+						<!-- CloudHub Provider -->
 						<provider>MC</provider>
-						<environment>${env}</environment>
-						<target>Cloudhub-US-East-2</target>
-						<applicationName>${appName}</applicationName>
+						<!-- Business Group ID (UUID from Access Management) -->
+						<businessGroupId>${businessGroupId}</businessGroupId>
+						<!-- Connected App -->
 						<connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
 						<connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
-						<businessGroupId>${businessGroupId}</businessGroupId>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<!-- Environment -->
+						<environment>SANDBOX</environment>
+						<!-- Shared Space -->
+						<target>Cloudhub-US-East-2</target>
+						<!-- Runtime -->
 						<muleVersion>${app.runtime}</muleVersion>
 						<javaVersion>17</javaVersion>
 						<releaseChannel>LTS</releaseChannel>
+						<!-- Application -->
+						<applicationName>firstmule</applicationName>
+						<!-- Capacity -->
 						<replicas>1</replicas>
 						<vCores>0.1</vCores>
+						<deploymentSettings>
+							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+						</deploymentSettings>
+						<properties>
+							<mule.env>Sandbox</mule.env>
+						</properties>
+						<secureProperties>
+							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+							<mule.key>${mule.key}</mule.key>
+						</secureProperties>
+						<integrations>
+							<services>
+								<objectStoreV2>
+									<enabled>true</enabled>
+								</objectStoreV2>
+							</services>
+						</integrations>
 					</cloudhub2Deployment>
 				</configuration>
 			</plugin>
