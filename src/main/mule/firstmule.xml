@@ -10,6 +10,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<flow name="firstmuleFlow" doc:id="7108582d-fc80-41b2-9c46-84ca6cf4cb30" >
 		<http:listener doc:name="Listener" doc:id="e6d34271-b044-4929-b9b1-8e5e0a8945de" path="/first" config-ref="HTTP_Listener_config"/>
 		<set-payload value='#["test data"]' doc:name="Set Payload" doc:id="b3eb7903-d672-41e2-8e95-21f21173f5ac" />
-		<logger level="INFO" doc:name="Logger" doc:id="245a54b3-5008-458f-8ce8-555ef83e3ad6" message='"my first commit"'/>
+		<logger level="INFO" doc:name="Logger" doc:id="245a54b3-5008-458f-8ce8-555ef83e3ad6" message='"my first commit added setting xml"'/>
 	</flow>
 </mule>
