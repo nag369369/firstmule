@@ -1,0 +1,66 @@
+name: Deploy firstmule to CloudHub 2.0
+
+# Trigger: only on push to main. Add pull_request here too if you want
+# a build-only (no deploy) check on PRs.
+on:
+  push:
+    branches: [ main ]
+
+env:
+  MULE_APP_NAME: firstmule
+  MULE_ENV: Production          # change to Sandbox/QA if this branch maps elsewhere
+  CLOUDHUB2_TARGET: Cloudhub-US-East-1   # your CloudHub 2.0 shared space name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    # Protects this deploy with a GitHub Environment (manual approval,
+    # secret scoping). Create an "Environment" named "production" in
+    # repo Settings > Environments if you want an approval gate.
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      # Anypoint credentials (Connected App) are injected as env vars,
+      # never written to disk / settings.xml, never echoed in logs.
+      - name: Build, test, and deploy to CloudHub 2.0
+        env:
+          ANYPOINT_CONNECTED_APP_ID: ${{ secrets.ANYPOINT_CONNECTED_APP_ID }}
+          ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
+          ANYPOINT_ORG_ID: ${{ secrets.ANYPOINT_ORG_ID }}
+        run: |
+          mvn -B clean package deploy \
+            -DmuleDeploy \
+            -Denv=${{ env.MULE_ENV }} \
+            -DconnectedAppClientId=${ANYPOINT_CONNECTED_APP_ID} \
+            -DconnectedAppClientSecret=${ANYPOINT_CONNECTED_APP_SECRET} \
+            -DbusinessGroupId=${ANYPOINT_ORG_ID} \
+            -DcloudhubTarget=${{ env.CLOUDHUB2_TARGET }} \
+            -DappName=${{ env.MULE_APP_NAME }} \
+            --settings .mvn/settings.xml
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+          retention-days: 14
+
+      - name: Deployment summary
+        if: success()
+        run: |
+          echo "### Deployed to CloudHub 2.0 :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "- App: **${{ env.MULE_APP_NAME }}**" >> $GITHUB_STEP_SUMMARY
+          echo "- Environment: **${{ env.MULE_ENV }}**" >> $GITHUB_STEP_SUMMARY
+          echo "- Target: **${{ env.CLOUDHUB2_TARGET }}**" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
