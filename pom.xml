@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>62f353e1-5112-4066-b2d7-d565e0ebb46d</groupId>
 	<artifactId>firstmule</artifactId>
@@ -26,40 +28,21 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudhub2Deployment>
+						<uri>https://anypoint.mulesoft.com</uri>
 						<provider>MC</provider>
-						<businessGroupId>${project.groupId}</businessGroupId>
+						<environment>${env}</environment>
+						<target>Cloudhub-US-East-2</target>
+						<applicationName>${appName}</applicationName>
 						<connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
 						<connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
-						<environment>${environment}</environment>
-						<target>Cloudhub-US-East-2</target>
+						<businessGroupId>${businessGroupId}</businessGroupId>
 						<muleVersion>${app.runtime}</muleVersion>
-						<applicationName>${project.name}-${mule.env}</applicationName>
-						<replicas>${replicas}</replicas>
-						<vCores>${vCores}</vCores>
 						<javaVersion>17</javaVersion>
 						<releaseChannel>LTS</releaseChannel>
-						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<deploymentSettings>
-							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-						</deploymentSettings>
-						<properties>
-							<mule.env>${mule.env}</mule.env>
-						</properties>
-						<secureProperties>
-							<anypoint.platform.client_id>70f592d632634646bc1a5daa05a2495b</anypoint.platform.client_id>
-							<anypoint.platform.client_secret>Dde2beD482534519AFAAf998FCD41C1f</anypoint.platform.client_secret>
-							<mule.key>${mule.key}</mule.key>
-						</secureProperties>
-						<integrations>
-							<services>
-								<objectStoreV2>
-									<enabled>true</enabled>
-								</objectStoreV2>
-							</services>
-						</integrations>
+						<replicas>1</replicas>
+						<vCores>0.1</vCores>
 					</cloudhub2Deployment>
-					<classifier>mule-application</classifier>					
-				</configuration>				
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
