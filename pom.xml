@@ -31,7 +31,7 @@
 						<connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
 						<connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
 						<environment>${environment}</environment>
-						<target>${target}</target>
+						<target>Cloudhub-US-East-2</target>
 						<muleVersion>${app.runtime}</muleVersion>
 						<applicationName>${project.name}-${mule.env}</applicationName>
 						<replicas>${replicas}</replicas>
