@@ -38,7 +38,7 @@ jobs:
           ANYPOINT_CONNECTED_APP_SECRET: ${{ secrets.ANYPOINT_CONNECTED_APP_SECRET }}
           ANYPOINT_ORG_ID: ${{ secrets.ANYPOINT_ORG_ID }}
         run: |
-          mvn -B clean package deploy \
+          mvn clean deploy \
             -DmuleDeploy \
             -Denv=${{ env.MULE_ENV }} \
             -DconnectedAppClientId=${ANYPOINT_CONNECTED_APP_ID} \
