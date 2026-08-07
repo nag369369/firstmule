@@ -58,17 +58,7 @@
 							</services>
 						</integrations>
 					</cloudhub2Deployment>
-					<classifier>mule-application</classifier>
-					<sharedLibraries>
-						<sharedLibrary>
-							<groupId>mysql</groupId>
-							<artifactId>mysql-connector-java</artifactId>
-						</sharedLibrary>
-						<sharedLibrary>
-							<groupId>com.microsoft.sqlserver</groupId>
-							<artifactId>mssql-jdbc</artifactId>
-						</sharedLibrary>
-					</sharedLibraries>
+					<classifier>mule-application</classifier>					
 				</configuration>				
 			</plugin>
 		</plugins>
