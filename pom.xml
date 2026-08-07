@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>62f353e1-5112-4066-b2d7-d565e0ebb46d</groupId>
+	<groupId>101d7a00-1753-4e5b-b44a-2532de5118b7</groupId>
 	<artifactId>firstmule</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 	<name>firstmule</name>
 	<properties>
@@ -68,6 +66,7 @@
 							</services>
 						</integrations>
 					</cloudhub2Deployment>
+					<classifier>---- select project type ----</classifier>
 				</configuration>
 			</plugin>
 		</plugins>
