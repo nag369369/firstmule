@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.mycompany</groupId>
+	<groupId>62f353e1-5112-4066-b2d7-d565e0ebb46d</groupId>
 	<artifactId>firstmule</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
@@ -23,7 +23,53 @@
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>				
+				<extensions>true</extensions>
+				<configuration>
+					<cloudhub2Deployment>
+						<provider>${provider}</provider>
+						<businessGroupId>${project.groupId}</businessGroupId>
+						<connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
+						<connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
+						<environment>${environment}</environment>
+						<target>${target}</target>
+						<muleVersion>${app.runtime}</muleVersion>
+						<applicationName>${project.name}-${mule.env}</applicationName>
+						<replicas>${replicas}</replicas>
+						<vCores>${vCores}</vCores>
+						<javaVersion>17</javaVersion>
+						<releaseChannel>LTS</releaseChannel>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<deploymentSettings>
+							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+						</deploymentSettings>
+						<properties>
+							<mule.env>${mule.env}</mule.env>
+						</properties>
+						<secureProperties>
+							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+							<mule.key>${mule.key}</mule.key>
+						</secureProperties>
+						<integrations>
+							<services>
+								<objectStoreV2>
+									<enabled>true</enabled>
+								</objectStoreV2>
+							</services>
+						</integrations>
+					</cloudhub2Deployment>
+					<classifier>mule-application</classifier>
+					<sharedLibraries>
+						<sharedLibrary>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+						</sharedLibrary>
+						<sharedLibrary>
+							<groupId>com.microsoft.sqlserver</groupId>
+							<artifactId>mssql-jdbc</artifactId>
+						</sharedLibrary>
+					</sharedLibraries>
+				</configuration>				
 			</plugin>
 		</plugins>
 	</build>
