@@ -8,8 +8,8 @@ on:
 
 env:
   MULE_APP_NAME: firstmule
-  MULE_ENV: Production          # change to Sandbox/QA if this branch maps elsewhere
-  CLOUDHUB2_TARGET: Cloudhub-US-East-1   # your CloudHub 2.0 shared space name
+  MULE_ENV: Sandbox          # change to Sandbox/QA if this branch maps elsewhere
+  CLOUDHUB2_TARGET: Cloudhub-US-East-2   # your CloudHub 2.0 shared space name
 
 jobs:
   build-and-deploy:
