@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>101d7a00-1753-4e5b-b44a-2532de5118b7</groupId>
 	<artifactId>firstmule</artifactId>
@@ -26,51 +28,35 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudhub2Deployment>
-						<!-- CloudHub Provider -->
+						<uri>https://anypoint.mulesoft.com</uri>
 						<provider>MC</provider>
-						<!-- Business Group ID (UUID from Access Management) -->
-						<businessGroupId>${businessGroupId}</businessGroupId>
-						<!-- Connected App -->
-						<connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
-						<connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
-						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<!-- Environment -->
-						<environment>SANDBOX</environment>
-						<!-- Shared Space -->
-						<target>Cloudhub-US-East-2</target>
-						<!-- Runtime -->
-						<muleVersion>${app.runtime}</muleVersion>
-						<javaVersion>17</javaVersion>
-						<releaseChannel>LTS</releaseChannel>
-						<!-- Application -->
+						<environment>Sandbox</environment>
+						<target>Cloudhub-AP-Southeast-2</target>
+						<muleVersion>4.4.0</muleVersion>
+						<server>anypoint-exchange-v2</server>
 						<applicationName>firstmule</applicationName>
-						<!-- Capacity -->
 						<replicas>1</replicas>
 						<vCores>0.1</vCores>
-						<deploymentSettings>
-							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-						</deploymentSettings>
 						<properties>
-							<mule.env>Sandbox</mule.env>
+							<http.port>8081</http.port>
 						</properties>
 						<secureProperties>
-							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
-							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
-							<mule.key>${mule.key}</mule.key>
+							<https.port>8082</https.port>
 						</secureProperties>
-						<integrations>
-							<services>
-								<objectStoreV2>
-									<enabled>true</enabled>
-								</objectStoreV2>
-							</services>
-						</integrations>
 					</cloudhub2Deployment>
-					<classifier>---- select project type ----</classifier>
 				</configuration>
+
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>anypoint-exchange-v2</id>
+			<name>Corporate Repository</name>
+			<url>https://maven.anypoint.mulesoft.com/api/v2/organizations/${project.groupId}/maven/</url>
+			<layout>default</layout>
+		</repository>
+	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
@@ -82,6 +68,12 @@
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.7</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-file-connector</artifactId>
+			<version>1.5.5</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
