@@ -7,10 +7,10 @@
          shared libs, parent poms) if your pom references them. Not
          strictly required if firstmule has no Exchange-hosted deps. -->
     <server>
-      <id>anypoint-exchange-v3</id>
+      <id>anypoint-exchange-v2</id>
       <username>~~~Client~~~</username>
       <!--<password>${env.ANYPOINT_CONNECTED_APP_ID}~sep~${env.ANYPOINT_CONNECTED_APP_SECRET}</password>-->
-	  <password>4f62fd54b03f44e7918946a8bc4abdb8~sep~$48A971E789a24E63BdB8A66485E374f3</password>
+	  <password>4f62fd54b03f44e7918946a8bc4abdb8~sep~48A971E789a24E63BdB8A66485E374f3</password>
     </server>
   </servers>
 </settings>
